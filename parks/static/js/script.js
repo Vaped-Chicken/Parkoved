@@ -1,18 +1,8 @@
-Vue.component("modal", {
-  template: "#modal-template"
-});
-
-new Vue({
-  el: "#app",
-  data: {
-    showModal: false
-  }
-});
-
 
 var app = new Vue({
+
   delimiters: ["[[", "]]"],
-  el: '#mainApp',
+  el: '#app',
   data: {
     counter: 1,
     info: [],
@@ -20,12 +10,39 @@ var app = new Vue({
     len_attr_list: [],
     attr_ids: [],
     answer_list: [],
-    paths: [],
+    photo_paths: [],
+    restriction: [],
+    number: null,
+    errors: [],
 
-    img: "/home/node1/projects/Parkoved/media/attraction/atr1.jpg",
   },
 
   methods: {
+    change_visibleTinder: function(){
+        $('#tinderModal').modal('toggle')
+    },
+    change_visibleAuth: function(){
+        $('#authModal').modal('toggle')
+    },
+    next_dialog: function () {
+      this.change_visibleAuth()
+      this.change_visibleTinder()
+    },
+    clean_counter: function(){
+      this.counter = 0;
+    },
+    checkForm: function () {
+     if (this.number) {
+       return true;
+     }
+
+     this.errors = [];
+
+     if (!this.number == null) {
+       this.errors.push('Помогите Илону Маску и укажите номер телефона пожалуста');
+        }
+     },
+
     next_pic: function(event) {
       let id = this.attr_ids[this.counter]
 
@@ -33,58 +50,70 @@ var app = new Vue({
         .get('/api/v1/attraction/' + id)
         .then(response => {
           this.info = response.data
-          console.log("info ", this.info.name);
+      })
+      axios
+        .get('/api/v1/restrictions/' + id)
+        .then(response => {
+          this.restriction = response.data
+      })
+      axios
+        .get('/api/v1/photo/' + id)
+        .then(response => {
+          this.photo_paths = response.data
+      })
 
-          axios
-            .get('/api/v1/visitor/2')
-            .then(response => {
-              this.answer_list = response.data.answer_list
-            })
-
-          if (event) {
-            this.counter++;
-            // console.log(this.len_attr_list);
-            // if (this.counter => this.len_attr_list){
-            //   showModal: false
-            // }
-
-            console.log("in event", this.counter);
-            intent = event.target.ownerDocument.activeElement.classList.value
-            data = {
-              'rating': intent,
-              id: id
-            }
-            // console.log(data);
-            // this.answer_list.push(data)
+        console.log(this.photo_paths.photo);
+        if (event) {
+          this.counter++;
+          if (this.counter >= this.len_attr_list){
+              this.change_visibleTinder()
+              // this.send_answers()
           }
-
-          // console.log(this.answer_list);
-        })
+          intent = event.target.ownerDocument.activeElement.classList.value
+          data = {
+            'rating': intent,
+            id: id
+          }
+          this.answer_list.push(data)
+        }
     },
     first_pic: function() {
       let id = this.attr_ids[0]
-
       axios
         .get('/api/v1/attraction/' + id)
         .then(response => {
           this.info = response.data
+      })
+      axios
+        .get('/api/v1/restrictions/' + id)
+        .then(response => {
+          this.restriction = response.data
+        })
+        axios
+          .get('/api/v1/photo/' + id)
+          .then(response => {
+            this.photo_paths = response.data
         })
     },
 
-    send_answers: function(intent, id) {
-      // this.answer_list.push()
-      // data = JSON.stringify(this.answer_list)
+    send_answers: function() {
+      upload_data = JSON.stringify(this.answer_list)
+      axios.patch('/api/v1/visitor/2', upload_data)
+      console.log('done');
 
-
-      // console.log(data);
-
-      // axios.post('http://127.0.0.1:5000/', this.counter)
-      // console.log(data);
     }
 
   },
+  mounted(){
+    this.change_visibleAuth()
+  },
   beforeMount() {
-    // сделать проверку номер телефона
+    axios
+      .get('/api/v1/visitor/')
+      .then(response => {
+
+      })
+
     axios
       .get('/api/v1/attraction')
       .then(response => {

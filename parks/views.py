@@ -37,3 +37,12 @@ class TestMapView(View):
             request,
             self.template_name,
         )
+
+class TestIndexView(View):
+    template_name = 'test_in.html'
+
+    def get(self,request):
+        return render(
+            request,
+            self.template_name,
+        )

@@ -14,7 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
   <script async src="https://cdn.ampproject.org/v0.js"></script>
-
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt|Source+Code+Pro:300,400,600" rel="stylesheet">
 </head>
 <body>
   <div class="container-fluid">
@@ -27,32 +27,44 @@
     </div>
     <div class="row feed">
 
-        <div class="card">
-          <img class="card-img-top" src="{% static 'images/atr4.jpg' %}">
-          <div class="card-body">
-            <h5 class="card-title">Фестиваль атракционов</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-success">Участвовать</a>
-          </div>
+      <div class="card">
+        <img class="card-img-top card-img-top-min" src="{% static 'images/6bc79cdc39d8a3011b02a498ae2b7f00.jpg' %}">
+        <div class="card-body">
+          <h5 class="card-title">Фестиваль аттракционов</h5>
+          <p class="card-text">Примите участие в фестивале аттракционов! Билеты со скидкой 10%. Выигрывайте ценные призы.</p>
+          <form>
+            <p>Выберите день</p>
+            <p><input type="date"></p>
+          </form>
+          <button class="btn btn-success" onclick="alert('Будем ждать вас в выбранный день');">Учавствовать</button>
         </div>
+      </div>
 
-        <div class="card">
-          <img class="card-img-top" src="{% static 'images/atr4.jpg' %}">
-          <div class="card-body">
-            <h5 class="card-title">Фестиваль атракционов</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-success">Участвовать</a>
-          </div>
+      <div class="card">
+        <img class="card-img-top card-img-top-min" src="{% static 'images/maxresdefault.jpg' %}">
+        <div class="card-body">
+          <h5 class="card-title">Праздник в будни!</h5>
+          <p class="card-text">В будний день скидка на любой аттракцион 5% и 15% в общепите. Ждём вас!</p><br><br>
+          <form>
+            <p>Выберите день</p>
+            <p><input type="date"></p>
+          </form>
+          <button class="btn btn-success" onclick="alert('Будем ждать вас в выбранный день');">Учавствовать</button>
         </div>
+      </div>
 
-        <div class="card">
-          <img class="card-img-top" src="{% static 'images/atr4.jpg' %}">
-          <div class="card-body">
-            <h5 class="card-title">Фестиваль атракционов</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-success">Участвовать</a>
-          </div>
+      <div class="card">
+        <img class="card-img-top card-img-top-min" src="{% static 'images/2.jpg' %}">
+        <div class="card-body">
+          <h5 class="card-title">Выгодные детские праздники</h5>
+          <p class="card-text">Закажите детский праздник у нас и получите комплекс выгодных предложений по вкусным ценам!</p>
+          <form>
+            <p>Выберите день</p>
+            <p><input type="date"></p>
+          </form>
+          <button class="btn btn-success" onclick="alert('Будем ждать вас в выбранный день');">Учавствовать</button>
         </div>
+      </div>
 
     </div>
     <div class="row row-nav">
