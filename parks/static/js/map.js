@@ -40,11 +40,12 @@ send_get_request_to_api('/api/v1/attraction/').then( result =>{
     if (el.altitude && el.longitude){
 
       let photo = el.photo_list[0]
-      console.log(el)
+      console.log(photo)
 
       send_get_request_to_api(`/api/v1/photo/${photo}`).then( result => {
         if (result.photo){
           let photo_url = result.photo.replace('http://192.168.2.30:8000/','')
+          console.log(photo_url)
           let customPopup = `Аттракцион: ${el.name} <br/><img src='${photo_url}' alt='maptime logo gif' width='250px' height='200px'/>`
           let attractionMarker = new L.Marker([el.altitude,el.longitude],{
                                                     icon: attractionIcon,
@@ -57,9 +58,7 @@ send_get_request_to_api('/api/v1/attraction/').then( result =>{
         }
       })
 
-    let antPolyline = new L.Polyline.AntPath([[52.60567991153733,39.5998764038086],[52.605341099502496,39.603309631347656],[52.605901441066074,39.60667848587037]], {color: 'red', weight: 5});
 
-    antPolyline.addTo(map);
 
     }
   })
