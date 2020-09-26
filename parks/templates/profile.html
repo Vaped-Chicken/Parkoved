@@ -1,0 +1,68 @@
+<!doctype html>
+<html amp lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Профиль | Нижний парк Липецк</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row feed">
+    <div class="page-content page-container" id="page-content">
+      <div class="padding">
+        <div class="row container d-flex justify-content-center">
+          <div class="col-md-5">
+            <div class="card-prof">
+              <div class="card-body text-center">
+                <div> <img src="https://img.icons8.com/bubbles/100/000000/administrator-male.png" class="img-lg rounded-circle mb-4" alt="profile image">
+                  <h4>Иван Иванович</h4>
+                  <p class="text-muted mb-0">89998887766</p>
+                </div>
+                 <button class="btn btn-info btn-sm mt-3 mb-4">Редактировать</button>
+                <div class="border-top pt-3">
+                  <div class="row">
+                    <div class="col">
+                      <h6>Очередь:</h6>
+                      <ul>
+                        <li>Карусель</li>
+                        <li>Крутыш</li>
+                        <li>Завертон</li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="row row-nav">
+      <div class="col">
+        <nav class="nav nav-pills nav-justified">
+          <a class="nav-item nav-link" href="/"><div class="row"><i class="material-icons">gesture</i></div><div class="row">Маршруты</div></a>
+          <a class="nav-item nav-link" href="ivent"><div class="row"><i class="material-icons">sentiment_satisfied_alt</i></div><div class="row">Ивенты</div></a>
+          <a class="nav-item nav-link active" href="profile"><div class="row"><i class="material-icons">person</i></div><div class="row">Профиль</div></a>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</body>
+</html>

@@ -5,7 +5,7 @@ from parks.models import Park,\
     Visitor,\
     Queue,\
     Restriction,\
-    Answer
+    Photo
 
 class AllParkListSerializer(serializers.ModelSerializer):
     """Список всех парков"""
@@ -42,9 +42,9 @@ class AllRestrictionListSerializer(serializers.ModelSerializer):
         model = Restriction
         fields = '__all__'
 
-class AllAnswerListSerializer(serializers.ModelSerializer):
-    """Список всех ответов"""
+class AllPhotoListSerializer(serializers.ModelSerializer):
+    """Список всех Фото"""
 
     class Meta:
-        model = Answer
+        model = Photo
         fields = '__all__'

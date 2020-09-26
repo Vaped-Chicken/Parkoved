@@ -4,8 +4,9 @@ from .models import Park,\
     Visitor,\
     Queue,\
     Restriction,\
-    Answer,\
-    Photo
+    Photo,\
+    FoodZone,\
+    VisitorType
 
 
 admin.site.register(Park)
@@ -13,5 +14,6 @@ admin.site.register(Attraction)
 admin.site.register(Visitor)
 admin.site.register(Queue)
 admin.site.register(Restriction)
-admin.site.register(Answer)
 admin.site.register(Photo)
+admin.site.register(FoodZone)
+admin.site.register(VisitorType)

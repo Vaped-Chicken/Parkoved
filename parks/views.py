@@ -10,3 +10,30 @@ class MainIndexView(View):
             request,
             self.template_name,
         )
+
+class IventView(View):
+    template_name = 'ivents.html'
+
+    def get(self,request):
+        return render(
+            request,
+            self.template_name,
+        )
+
+class ProfileView(View):
+    template_name = 'profile.html'
+
+    def get(self,request):
+        return render(
+            request,
+            self.template_name,
+        )
+
+class TestMapView(View):
+    template_name = 'test_map.html'
+
+    def get(self,request):
+        return render(
+            request,
+            self.template_name,
+        )

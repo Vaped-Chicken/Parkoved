@@ -10,7 +10,8 @@ router.register(r'attraction', views.AttractionViewSet, basename='attraction')
 router.register(r'visitor', views.VisitorViewSet, basename='visitor')
 router.register(r'queue', views.QueueViewSet, basename='queue')
 router.register(r'restrictions', views.RestrictionViewSet, basename='restrictions')
-router.register(r'answer', views.AnswerViewSet, basename='answer')
+router.register(r'photo', views.PhotoViewSet, basename='photo')
+
 
 urlpatterns = [
     path('', include(router.urls)),

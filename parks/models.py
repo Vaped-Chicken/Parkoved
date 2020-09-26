@@ -1,5 +1,5 @@
 from django.db import models
-# from .choices import *
+from django.contrib.postgres.fields import JSONField
 
 class Park(models.Model):
     """Макро-обьект - Парк"""
@@ -41,10 +41,39 @@ class Attraction(models.Model):
                             blank=True)
     photo_list = models.ManyToManyField('Photo',
                             verbose_name = 'Фотки')
-
+    altitude = models.CharField('северная широта(°N)',
+                            max_length=50,
+                            blank=True,
+                            null=True)
+    longitude = models.CharField('восточная долгота(°E)',
+                            max_length=50,
+                            blank=True,
+                            null=True)
 
     def __str__(self):
         return 'Аттракцион {}'.format(self.name)
+
+class FoodZone(models.Model):
+    """Микро-обьект - Фудзона"""
+
+    name = models.CharField("Название фудкорта",
+                            max_length=50)
+    park = models.ForeignKey('Park',
+                            on_delete = models.CASCADE,
+                            verbose_name = 'Парк')
+    rating = models.CharField("Рейтинг",
+                            max_length=50)
+    altitude = models.CharField('северная широта(°N)',
+                            max_length=50,
+                            blank=True,
+                            null=True)
+    longitude = models.CharField('восточная долгота(°E)',
+                            max_length=50,
+                            blank=True,
+                            null=True)
+
+    def __str__(self):
+        return 'Фудзона {}'.format(self.name)
 
 class Visitor(models.Model):
     """обьект - Посетитель"""
@@ -52,20 +81,41 @@ class Visitor(models.Model):
     name = models.CharField("Имя посетителя",
                             max_length=50)
     age = models.CharField("Возраст посетителя",
-                            max_length=50)
+                            max_length=3,
+                            blank=True,
+                            null=True)
     phoneNumber = models.CharField("Телефон посетителя",
                             max_length=50)
     height = models.CharField("Рост посетителя",
-                            max_length=50)
+                            max_length=50,
+                            blank=True,
+                            null=True)
     weight = models.CharField("Вес посетителя",
-                            max_length=50)
+                            max_length=50,
+                            blank=True,
+                            null=True)
     family = models.CharField("Семейное положение посетителя",
-                            max_length=50)
-    answer_list = models.ManyToManyField('Answer',
-                            verbose_name = 'Ответы посетителя')
-
+                            max_length=50,
+                            blank=True,
+                            null=True)
+    answer_list = models.JSONField("Ответы посетителя",
+                            blank=True,
+                            null=True)
+    visitorType = models.ForeignKey('VisitorType',
+                            on_delete = models.CASCADE,
+                            blank=True,
+                            null=True,
+                            verbose_name = 'тип посетителя')
     def __str__(self):
         return 'Посетитель {}'.format(self.name)
+
+class VisitorType(models.Model):
+    """обьект - Тип посетителя"""
+
+    name = models.CharField("Имя посетителя",
+                            max_length=50)
+    def __str__(self):
+        return '{}'.format(self.name)
 
 class Queue(models.Model):
     """обьект - Очередь"""
@@ -86,23 +136,23 @@ class Restriction(models.Model):
     def __str__(self):
         return 'Ограничение {}'.format(self.name)
 
-class Answer(models.Model):
-    """обьект - Очередь"""
-
-    ANSWER_CHOICES = [
-        ('LI', 'LIKE'),
-        ('DI', 'DISLIKE'),
-    ]
-
-    attraction = models.ForeignKey('Attraction',
-                            on_delete = models.CASCADE,
-                            verbose_name = 'Аттракцион')
-    answer = models.CharField('выбор',
-                            max_length=2,
-                            choices = ANSWER_CHOICES)
-
-    def __str__(self):
-        return 'оценка аттракциона {}'.format(self.attraction)
+# class Answer(models.Model):
+#     """обьект - Очередь"""
+#
+#     ANSWER_CHOICES = [
+#         ('LI', 'LIKE'),
+#         ('DI', 'DISLIKE'),
+#     ]
+#
+#     attraction = models.ForeignKey('Attraction',
+#                             on_delete = models.CASCADE,
+#                             verbose_name = 'Аттракцион')
+#     answer = models.CharField('выбор',
+#                             max_length=2,
+#                             choices = ANSWER_CHOICES)
+#
+#     def __str__(self):
+#         return 'оценка аттракциона {}'.format(self.attraction)
 
 class Photo(models.Model):
     """обьект - Фото"""

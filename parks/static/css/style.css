@@ -34,9 +34,8 @@
 }
 
 .edit-way {
-  position: absolute;
-  bottom:0;
-  width: 100%;
+
+  border-radius: 0 0 20px 0;
 }
 
 .container .vuecard {
@@ -77,7 +76,7 @@
 .content .vuecard .local {
 	display: flex;
 	align-items: center;
-	padding: 0 0 20px 0;
+	padding: 30px 0 20px 0;
 }
 
 .content .vuecard .local i {
@@ -153,7 +152,7 @@
 .d-block {
   object-fit: cover;
   max-width: 100%;
-  min-height: 250px;
+  min-height: 400px;
   max-height: 250px;
 }
 
@@ -167,4 +166,60 @@
 }
 .flame {
   color: #f44336!important;
+}
+.row-nav {
+  background: #fff;
+  position: fixed;
+  bottom:0;
+  width: 108%;
+  box-shadow: 0px 0px 5px -3px #000;
+}
+.d-none {
+  display: block!important;
+}
+.d-none h3 {
+  text-shadow: 1px 1px 5px black;
+  text-align: left;
+  font-size:25px;
+  font-weight:700;
+}
+.d-none p {
+  text-shadow: 1px 1px 5px black;
+  text-align: left;
+  font-size:18px;
+
+}
+.stretch-card>.card-prof {
+    width: 100%;
+    min-width: 100%
+}
+
+.card-prof {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+
+    border-radius: 0
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #3da5f4;
+    border-color: #3da5f4
+}
+
+.btn {
+    font-size: 0.875rem;
+    line-height: 1;
+    font-weight: 400;
+    padding: .7rem 1.5rem;
+    border-radius: 0.1275rem
+}
+
+h6 {
+    font-size: .9375rem
 }

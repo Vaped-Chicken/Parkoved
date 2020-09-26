@@ -6,14 +6,14 @@ from .serializer import AllParkListSerializer,\
     AllVisitorListSerializer,\
     AllQueueListSerializer,\
     AllRestrictionListSerializer,\
-    AllAnswerListSerializer
+    AllPhotoListSerializer
 
 from parks.models import Park,\
     Attraction,\
     Visitor,\
     Queue,\
     Restriction,\
-    Answer
+    Photo
 
 class ParkViewSet(viewsets.ModelViewSet):
     """
@@ -21,7 +21,7 @@ class ParkViewSet(viewsets.ModelViewSet):
     """
     queryset = Park.objects.all()
     serializer_class = AllParkListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 class AttractionViewSet(viewsets.ModelViewSet):
     """
@@ -29,7 +29,7 @@ class AttractionViewSet(viewsets.ModelViewSet):
     """
     queryset = Attraction.objects.all()
     serializer_class = AllAttractionListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 class VisitorViewSet(viewsets.ModelViewSet):
     """
@@ -37,7 +37,7 @@ class VisitorViewSet(viewsets.ModelViewSet):
     """
     queryset = Visitor.objects.all()
     serializer_class = AllVisitorListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 class QueueViewSet(viewsets.ModelViewSet):
     """
@@ -45,7 +45,7 @@ class QueueViewSet(viewsets.ModelViewSet):
     """
     queryset = Queue.objects.all()
     serializer_class = AllQueueListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 class RestrictionViewSet(viewsets.ModelViewSet):
     """
@@ -53,12 +53,12 @@ class RestrictionViewSet(viewsets.ModelViewSet):
     """
     queryset = Restriction.objects.all()
     serializer_class = AllRestrictionListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
-class AnswerViewSet(viewsets.ModelViewSet):
+class PhotoViewSet(viewsets.ModelViewSet):
     """
-    API endpoint for Restrictions instance.
+    API endpoint for Photo instance.
     """
-    queryset = Answer.objects.all()
-    serializer_class = AllAnswerListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    queryset = Photo.objects.all()
+    serializer_class = AllPhotoListSerializer
+    # permission_classes = [permissions.IsAuthenticated]
