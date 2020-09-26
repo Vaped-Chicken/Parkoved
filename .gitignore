@@ -4,4 +4,5 @@ secret.py
 __pycache__
 db.sqlite3
 /static
+/media
 ngrok.exe

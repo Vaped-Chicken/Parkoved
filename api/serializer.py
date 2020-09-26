@@ -4,7 +4,8 @@ from parks.models import Park,\
     Attraction,\
     Visitor,\
     Queue,\
-    Restrictions
+    Restriction,\
+    Answer
 
 class AllParkListSerializer(serializers.ModelSerializer):
     """Список всех парков"""
@@ -34,9 +35,16 @@ class AllQueueListSerializer(serializers.ModelSerializer):
         model = Queue
         fields = '__all__'
 
-class AllRestrictionsListSerializer(serializers.ModelSerializer):
+class AllRestrictionListSerializer(serializers.ModelSerializer):
     """Список всех ограничений"""
 
     class Meta:
-        model = Restrictions
+        model = Restriction
+        fields = '__all__'
+
+class AllAnswerListSerializer(serializers.ModelSerializer):
+    """Список всех ответов"""
+
+    class Meta:
+        model = Answer
         fields = '__all__'

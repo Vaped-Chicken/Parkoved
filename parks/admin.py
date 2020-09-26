@@ -3,11 +3,15 @@ from .models import Park,\
     Attraction,\
     Visitor,\
     Queue,\
-    Restrictions
+    Restriction,\
+    Answer,\
+    Photo
 
 
 admin.site.register(Park)
 admin.site.register(Attraction)
 admin.site.register(Visitor)
 admin.site.register(Queue)
-admin.site.register(Restrictions)
+admin.site.register(Restriction)
+admin.site.register(Answer)
+admin.site.register(Photo)

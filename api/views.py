@@ -5,13 +5,15 @@ from .serializer import AllParkListSerializer,\
     AllAttractionListSerializer,\
     AllVisitorListSerializer,\
     AllQueueListSerializer,\
-    AllRestrictionsListSerializer
+    AllRestrictionListSerializer,\
+    AllAnswerListSerializer
 
 from parks.models import Park,\
     Attraction,\
     Visitor,\
     Queue,\
-    Restrictions
+    Restriction,\
+    Answer
 
 class ParkViewSet(viewsets.ModelViewSet):
     """
@@ -45,10 +47,18 @@ class QueueViewSet(viewsets.ModelViewSet):
     serializer_class = AllQueueListSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class RestrictionsViewSet(viewsets.ModelViewSet):
+class RestrictionViewSet(viewsets.ModelViewSet):
     """
     API endpoint for Restrictions instance.
     """
-    queryset = Restrictions.objects.all()
-    serializer_class = AllRestrictionsListSerializer
+    queryset = Restriction.objects.all()
+    serializer_class = AllRestrictionListSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class AnswerViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for Restrictions instance.
+    """
+    queryset = Answer.objects.all()
+    serializer_class = AllAnswerListSerializer
     permission_classes = [permissions.IsAuthenticated]

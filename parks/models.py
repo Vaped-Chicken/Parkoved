@@ -1,4 +1,5 @@
 from django.db import models
+# from .choices import *
 
 class Park(models.Model):
     """Макро-обьект - Парк"""
@@ -26,7 +27,7 @@ class Attraction(models.Model):
     park = models.ForeignKey('Park',
                             on_delete = models.CASCADE,
                             verbose_name = 'Парк')
-    restrictions = models.ManyToManyField('Restrictions',
+    restrictions = models.ManyToManyField('Restriction',
                             verbose_name = 'Огрничения')
     rating = models.CharField("Рейтинг",
                             max_length=50)
@@ -35,6 +36,13 @@ class Attraction(models.Model):
     queue = models.ForeignKey('Queue',
                             on_delete = models.CASCADE,
                             verbose_name = 'Очередь')
+    photo = models.ImageField('Фото аттракционна',
+                            upload_to = 'attraction',
+                            blank=True)
+    photo_list = models.ManyToManyField('Photo',
+                            verbose_name = 'Фотки')
+
+
     def __str__(self):
         return 'Аттракцион {}'.format(self.name)
 
@@ -53,11 +61,15 @@ class Visitor(models.Model):
                             max_length=50)
     family = models.CharField("Семейное положение посетителя",
                             max_length=50)
+    answer_list = models.ManyToManyField('Answer',
+                            verbose_name = 'Ответы посетителя')
+
     def __str__(self):
         return 'Посетитель {}'.format(self.name)
 
 class Queue(models.Model):
     """обьект - Очередь"""
+
     # id
     visitors = models.ManyToManyField('Visitor',
                             verbose_name = 'Посетители')
@@ -65,10 +77,39 @@ class Queue(models.Model):
     def __str__(self):
         return 'Очередь {}'.format(self.id)
 
-class Restrictions(models.Model):
+class Restriction(models.Model):
     """обьект - Ограничение"""
+
     name = models.CharField("Тип ограничения",
                             max_length=50)
 
     def __str__(self):
         return 'Ограничение {}'.format(self.name)
+
+class Answer(models.Model):
+    """обьект - Очередь"""
+
+    ANSWER_CHOICES = [
+        ('LI', 'LIKE'),
+        ('DI', 'DISLIKE'),
+    ]
+
+    attraction = models.ForeignKey('Attraction',
+                            on_delete = models.CASCADE,
+                            verbose_name = 'Аттракцион')
+    answer = models.CharField('выбор',
+                            max_length=2,
+                            choices = ANSWER_CHOICES)
+
+    def __str__(self):
+        return 'оценка аттракциона {}'.format(self.attraction)
+
+class Photo(models.Model):
+    """обьект - Фото"""
+
+    photo = models.ImageField('Фото аттракционна',
+                            upload_to = 'attraction',
+                            blank=True)
+
+    def __str__(self):
+        return 'photo'
