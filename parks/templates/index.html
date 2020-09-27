@@ -18,6 +18,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt|Source+Code+Pro:300,400,600" rel="stylesheet">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
   <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/leaflet-ant-path" type="text/javascript"></script>
 
 </head>
 <body>
@@ -34,11 +35,12 @@
 
             </div>
             <div class="modal-body">
+              <p>Введите номер телефона, чтобы авторизироваться и получить уникальное предложение</p>
               <div class="input-group input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing">Номер</span>
                 </div>
-                <input type="text" @submit="checkForm" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                <input type="text" id = "visitor_number" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
                 <button class="btn btn-success" v-on:click="next_dialog" type="button">Войти</button>
               </div>
 
@@ -112,7 +114,7 @@
       <div class="col">
         <nav class="nav nav-pills nav-justified">
 
-          <a class="nav-item nav-link active" href="index.html"><div class="row"><i class="material-icons">gesture</i></div><div class="row">Маршруты</div></a>
+          <a class="nav-item nav-link active" href="/"><div class="row"><i class="material-icons">gesture</i></div><div class="row">Маршруты</div></a>
 
 
           <a class="nav-item nav-link" href="ivent"><div class="row"><i class="material-icons">sentiment_satisfied_alt</i></div><div class="row">Ивенты</div></a>

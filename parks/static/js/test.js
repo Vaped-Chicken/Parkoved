@@ -40,7 +40,7 @@ send_get_request_to_api('/api/v1/attraction/').then( result =>{
     if (el.altitude && el.longitude){
 
       let photo = el.photo_list[0]
-      console.log(el)
+      // console.log(el)
 
       send_get_request_to_api(`/api/v1/photo/${photo}`).then( result => {
         if (result.photo){
@@ -56,15 +56,39 @@ send_get_request_to_api('/api/v1/attraction/').then( result =>{
                                                 .addTo(map)
         }
       })
-
-    let antPolyline = new L.Polyline.AntPath([[52.60567991153733,39.5998764038086],
-                                              [52.605341099502496,39.603309631347656],
-                                              [52.605901441066074,39.60667848587037],
-                                              [52.60670936279315,39.61212873458863],
-                                              [52.60574506739741,39.61560487747193]], {color: 'red', weight: 5});
-
-    antPolyline.addTo(map);
-
     }
   })
+})
+
+send_get_request_to_api(`/api/v1/visitor/2`).then( result => {
+  let liked_attraction = []
+  let ant_path_coord = []
+  result.answer_list.forEach( el=> {
+    if (el.rating == 'heart'){
+      liked_attraction.push(el.id)
+    }
+  })
+
+  let itemsProcessed = 0
+
+  liked_attraction.forEach( (el, index, array) => {
+    send_get_request_to_api(`/api/v1/attraction/${el}/`).then( result => {
+      let coord = [Number(result.altitude),Number(result.longitude)]
+      ant_path_coord.push(coord)
+
+      itemsProcessed++;
+      if( itemsProcessed === array.length) {
+      callback()
+      }
+    })
+  })
+
+  function callback () {
+    let antPolyline = new L.Polyline.AntPath(ant_path_coord, {color: 'red', weight: 5})
+    antPolyline.addTo(map)
+  }
+})
+
+map.addEventListener('click', event => {
+  console.log(`вы кликнули в точку: [${event.latlng.lat}, ${event.latlng.lng}]`)
 })

@@ -45,6 +45,10 @@ class Attraction(models.Model):
                             max_length=50,
                             blank=True,
                             null=True)
+    price = models.CharField('стоимость билета',
+                            max_length=5,
+                            blank=True,
+                            null=True)
     longitude = models.CharField('восточная долгота(°E)',
                             max_length=50,
                             blank=True,
@@ -71,6 +75,8 @@ class FoodZone(models.Model):
                             max_length=50,
                             blank=True,
                             null=True)
+    photo_list = models.ManyToManyField('Photo',
+                            verbose_name = 'Фотки')
 
     def __str__(self):
         return 'Фудзона {}'.format(self.name)

@@ -14,26 +14,26 @@ map.on('drag', function() {
 })
 
 const LeafIcon = L.Icon.extend({
-    options:{
-        // shadowUrl: 'leaf-shadow.png', // ТУТ можно намутить тень для иконки
-        iconSize:     [30, 40], // size of the icon
-        shadowSize:   [50, 64], // size of the shadow
-        iconAnchor:   [15, 45], // point of the icon which will correspond to marker's location
-        shadowAnchor: [4, 62],  // the same for the shadow
-        popupAnchor:  [0, -36] // point from which the popup should open relative to the iconAnchor
-    }
+  options:{
+    // shadowUrl: 'leaf-shadow.png', // ТУТ можно намутить тень для иконки
+    iconSize:     [30, 40], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [15, 45], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, -36] // point from which the popup should open relative to the iconAnchor
+  }
 })
 
 const attractionIcon = new LeafIcon({iconUrl: "/static/images/111111.png"})
 
 
 
-    // specify popup options
-    let customOptions =
-        {
-        'maxWidth': '300',
-        'className' : 'custom'
-        }
+// specify popup options
+let customOptions =
+{
+  'maxWidth': '300',
+  'className' : 'custom'
+}
 
 send_get_request_to_api('/api/v1/attraction/').then( result =>{
   result.forEach(el =>{
@@ -46,15 +46,19 @@ send_get_request_to_api('/api/v1/attraction/').then( result =>{
         if (result.photo){
           let photo_url = result.photo.replace('http://192.168.2.30:8000/','')
           console.log(photo_url)
-          let customPopup = `Аттракцион: ${el.name} <br/><img src='${photo_url}' alt='maptime logo gif' width='250px' height='200px'/>`
+          function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+          }
+          var queueNth = getRandomInt(3, 63)
+          let customPopup = `Аттракцион: ${el.name} <br/><img src='${photo_url}' alt='maptime logo gif' width='150px' height='115px'/><p class="timework">Режим работы:<br>пн-пт | 10:00-20:00<br>выходные | 09:00-21:00</p><p class="priceticket">Стоимость билета: ${el.price}</p><button class="btn btn-success btn-sm" onclick="alert('Билет приобретен! Место в очереди: ${queueNth}');">Купить</button>`
           let attractionMarker = new L.Marker([el.altitude,el.longitude],{
-                                                    icon: attractionIcon,
-                                                    id: el.id,
-                                                    type: 'attraction'
-                                                })
-                                                .bindPopup(customPopup,customOptions)
-                                                // .bindPopup(`Аттракцион ${el.name}`)
-                                                .addTo(map)
+            icon: attractionIcon,
+            id: el.id,
+            type: 'attraction'
+          })
+          .bindPopup(customPopup,customOptions)
+          // .bindPopup(`Аттракцион ${el.name}`)
+          .addTo(map)
         }
       })
 
